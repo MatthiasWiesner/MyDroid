@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import de.mwiesner.mydroid.calendar.CalendarFragment;
+import de.mwiesner.mydroid.tasks.TasksFragment;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -90,6 +91,8 @@ public class MainActivity extends ActionBarActivity {
             // Return a PlaceholderFragment (defined as a static inner class below).
             if (position == 0){
                 return new CalendarFragment().newInstance(position + 1);
+            } else if (position == 1){
+                return new TasksFragment().newInstance(position + 1);
             }
             return PlaceholderFragment.newInstance(position + 1);
         }

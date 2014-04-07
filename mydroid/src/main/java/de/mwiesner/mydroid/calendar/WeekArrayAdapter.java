@@ -11,15 +11,15 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import de.mwiesner.mydroid.R;
-import de.mwiesner.mydroid.model.Week;
+import de.mwiesner.mydroid.calendar.model.Week;
 import com.squareup.picasso.Picasso;
 
 
-public class CalendarArrayAdapter extends ArrayAdapter<Week> {
+public class WeekArrayAdapter extends ArrayAdapter<Week> {
     private final Context context;
     private final ArrayList<Week> weeks;
 
-    public CalendarArrayAdapter(Context context, ArrayList<Week> weeks) {
+    public WeekArrayAdapter(Context context, ArrayList<Week> weeks) {
         super(context, R.id.calendarItem, weeks);
         this.context = context;
         this.weeks = weeks;

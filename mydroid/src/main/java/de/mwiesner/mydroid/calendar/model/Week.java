@@ -1,4 +1,4 @@
-package de.mwiesner.mydroid.model;
+package de.mwiesner.mydroid.calendar.model;
 
 
 public class Week {

@@ -12,15 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+
 import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 
-import de.mwiesner.mydroid.EventBus;
+import de.mwiesner.mydroid.events.EventBus;
 import de.mwiesner.mydroid.R;
-import de.mwiesner.mydroid.model.Week;
-import de.mwiesner.mydroid.model.Weeks;
-import de.mwiesner.mydroid.tasks.backend.LoadCalendarAsyncTask;
+import de.mwiesner.mydroid.calendar.model.Week;
+import de.mwiesner.mydroid.calendar.model.Weeks;
 
 
 public class CalendarFragment extends Fragment {
@@ -43,16 +44,17 @@ public class CalendarFragment extends Fragment {
         return fragment;
     }
 
-    public CalendarFragment() {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         EventBus.getEventBus().register(this);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
          Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_calendar, container, false);
-        new LoadCalendarAsyncTask().execute();
+        (new LoadCalendarAsyncTask()).execute();
         return view;
     }
 
@@ -60,12 +62,12 @@ public class CalendarFragment extends Fragment {
     public void displayCalendar(Weeks weeks){
         if(isAdded()){
             activity = getActivity();
-            ListView listView = (ListView) activity.findViewById(R.id.calendarList);
-            CalendarArrayAdapter adapter = new CalendarArrayAdapter(activity, weeks.weeks);
+            ListView listView = (ListView) getActivity().findViewById(R.id.calendarList);
+
+            WeekArrayAdapter adapter = new WeekArrayAdapter(getActivity(), weeks.weeks);
             listView.setAdapter(adapter);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {

@@ -1,4 +1,4 @@
-package de.mwiesner.mydroid;
+package de.mwiesner.mydroid.events;
 
 import com.squareup.otto.Bus;
 import com.squareup.otto.ThreadEnforcer;
